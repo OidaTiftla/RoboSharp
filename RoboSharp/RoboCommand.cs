@@ -52,6 +52,10 @@ namespace RoboSharp {
 
         #region Events
 
+        public delegate void LogOutputHandler(object sender, LogOutputEventArgs e);
+
+        public event LogOutputHandler OnLogOutput;
+
         public delegate void FileProcessedHandler(object sender, FileProcessedEventArgs e);
 
         public event FileProcessedHandler OnFileProcessed;
@@ -80,6 +84,9 @@ namespace RoboSharp {
         private void process_OutputDataReceived(object sender, DataReceivedEventArgs e) {
             if (e.Data == null)
                 return;
+
+            OnLogOutput?.Invoke(this, new LogOutputEventArgs(e.Data));
+
             var data = e.Data.Trim().Replace("\0", "");
             if (data.IsNullOrWhiteSpace())
                 return;
