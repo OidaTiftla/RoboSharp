@@ -1,9 +1,8 @@
 ﻿using System.Text;
 
-namespace RoboSharp
-{
-    public class LoggingOptions
-    {
+namespace RoboSharp {
+
+    public class LoggingOptions {
         internal const string LIST_ONLY = "/L ";
         internal const string REPORT_EXTRA_FILES = "/X ";
         internal const string VERBOSE_OUTPUT = "/V ";
@@ -30,104 +29,122 @@ namespace RoboSharp
         /// [/L]
         /// </summary>
         public bool ListOnly { get; set; }
+
         /// <summary>
         /// Report all extra files, not just those selected.
         /// [X]
         /// </summary>
         public bool ReportExtraFiles { get; set; }
+
         /// <summary>
         /// Produce verbose output, showing skipped files.
         /// [V]
         /// </summary>
         public bool VerboseOutput { get; set; }
+
         /// <summary>
         /// Include source file time stamps in the output.
         /// [/TS]
         /// </summary>
         public bool IncludeSourceTimeStamps { get; set; }
+
         /// <summary>
         /// Include full path names of files in the output.
         /// [/FP]
         /// </summary>
         public bool IncludeFullPathNames { get; set; }
+
         /// <summary>
         /// Print sizes as bytes in the output.
         /// [/BYTES]
         /// </summary>
         public bool PrintSizesAsBytes { get; set; }
+
         /// <summary>
         /// Do not log file sizes.
         /// [/NS]
         /// </summary>
         public bool NoFileSizes { get; set; }
+
         /// <summary>
         /// Do not log file classes.
         /// [/NC]
         /// </summary>
         public bool NoFileClasses { get; set; }
+
         /// <summary>
         /// Do not log file names.
         /// [/NFL]
         /// </summary>
         public bool NoFileList { get; set; }
+
         /// <summary>
         /// Do not log directory names.
         /// [/NDL]
         /// </summary>
         public bool NoDirectoryList { get; set; }
+
         /// <summary>
         /// Do not log percentage copied.
         /// [/NP]
         /// </summary>
         public bool NoProgress { get; set; }
+
         /// <summary>
         /// Show estimated time of arrival of copied files.
         /// [/ETA]
         /// </summary>
         public bool ShowEstimatedTimeOfArrival { get; set; }
+
         /// <summary>
         /// Output status to LOG file (overwrite existing log).
         /// [/LOG:file]
         /// </summary>
         public string LogPath { get; set; }
+
         /// <summary>
         /// Output status to LOG file (append to existing log).
         /// [/LOG+:file]
         /// </summary>
         public string AppendLogPath { get; set; }
+
         /// <summary>
         /// Output status to LOG file as UNICODE (overwrite existing log).
         /// [/UNILOG:file]
         /// </summary>
         public string UnicodeLogPath { get; set; }
+
         /// <summary>
         /// Output status to LOG file as UNICODE (append to existing log).
         /// [/UNILOG+:file]
         /// </summary>
         public string AppendUnicodeLogPath { get; set; }
+
         /// <summary>
         /// Output to RoboSharp and Log.
         /// [/TEE]
         /// </summary>
         public bool OutputToRoboSharpAndLog { get; set; }
+
         /// <summary>
         /// Do not output a Job Header.
         /// [/NJH]
         /// </summary>
         public bool NoJobHeader { get; set; }
+
         /// <summary>
         /// Do not output a Job Summary.
         /// [/NJS]
         /// </summary>
         public bool NoJobSummary { get; set; }
+
         /// <summary>
         /// Output as UNICODE.
         /// [/UNICODE]
         /// </summary>
         public bool OutputAsUnicode { get; set; }
 
-        internal string Parse()
-        {
+        internal string Parse() {
             var options = new StringBuilder();
 
             if (ListOnly)

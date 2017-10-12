@@ -1,9 +1,9 @@
 ﻿using System.Text;
 
-namespace RoboSharp
-{
-    public class CopyOptions
-    {
+namespace RoboSharp {
+
+    public class CopyOptions {
+
         #region Option Constants
 
         internal const string COPY_SUBDIRECTORIES = "/S ";
@@ -56,66 +56,73 @@ namespace RoboSharp
         /// The source file path where the RoboCommand is copying files from.
         /// </summary>
         public string Source { get; set; }
+
         /// <summary>
         /// The destination file path where the RoboCommand is copying files to.
         /// </summary>
         public string Destination { get; set; }
+
         /// <summary>
         /// Allows you to supply a specific file to copy or use wildcard characters (* or ?).
         /// </summary>
-        public string FileFilter
-        {
-            get
-            {
+        public string FileFilter {
+            get {
                 return fileFilter;
             }
-            set
-            {
+            set {
                 fileFilter = value;
             }
         }
 
         /// <summary>
-        /// Copies subdirectories. Note that this option excludes empty directories. 
+        /// Copies subdirectories. Note that this option excludes empty directories.
         /// [/S]
         /// </summary>
         public bool CopySubdirectories { get; set; }
+
         /// <summary>
-        /// Copies subdirectories. Note that this option includes empty directories. 
+        /// Copies subdirectories. Note that this option includes empty directories.
         /// [/E]
         /// </summary>
         public bool CopySubdirectoriesIncludingEmpty { get; set; }
+
         /// <summary>
-        /// Copies only the top N levels of the source directory tree. The default is 
-        /// zero which does not limit the depth. 
+        /// Copies only the top N levels of the source directory tree. The default is
+        /// zero which does not limit the depth.
         /// [/LEV:N]
         /// </summary>
         public int Depth { get; set; }
+
         /// <summary>
-        /// Copies files in Restart mode. 
+        /// Copies files in Restart mode.
         /// [/Z]
         /// </summary>
         public bool EnableRestartMode { get; set; }
+
         /// <summary>
-        /// Copies files in Backup mode. 
+        /// Copies files in Backup mode.
         /// [/B]
         /// </summary>
         public bool EnableBackupMode { get; set; }
+
         /// <summary>
-        /// Uses Restart mode. If access is denied, this option uses Backup mode. 
+        /// Uses Restart mode. If access is denied, this option uses Backup mode.
         /// [/ZB]
         /// </summary>
         public bool EnableRestartModeWithBackupFallback { get; set; }
+
         /// <summary>
         /// Copy using unbuffered I/O (recommended for large files).
         /// [/J]
         /// </summary>
         public bool UseUnbufferedIo { get; set; }
+
         /// <summary>
-        /// Copies all encrypted files in EFS RAW mode. 
+        /// Copies all encrypted files in EFS RAW mode.
         /// [/EFSRAW]
         /// </summary>
         public bool EnableEfsRawMode { get; set; }
+
         /// <summary>
         /// This property should be set to a string consisting of all the flags to include (eg. DAT; DATSOU)
         /// Specifies the file properties to be copied. The following are the valid values for this option:
@@ -128,122 +135,140 @@ namespace RoboSharp
         ///The default value for copyflags is DA (data, attributes, and time stamps).
         ///[/COPY:copyflags]
         /// </summary>
-        public string CopyFlags
-        {
-            get
-            {
+        public string CopyFlags {
+            get {
                 return copyFlags;
             }
-            set
-            {
+            set {
                 copyFlags = value;
             }
         }
+
         /// <summary>
         /// Copies files with security (equivalent to /copy:DAT).
         /// [/SEC]
         /// </summary>
         public bool CopyFilesWithSecurity { get; set; }
+
         /// <summary>
         /// Copies all file information (equivalent to /copy:DATSOU).
         /// [/COPYALL]
         /// </summary>
         public bool CopyAll { get; set; }
+
         /// <summary>
         /// Copies no file information (useful with Purge option).
         /// [/NOCOPY]
         /// </summary>
         public bool RemoveFileInformation { get; set; }
+
         /// <summary>
         /// Fixes file security on all files, even skipped ones.
         /// [/SECFIX]
         /// </summary>
         public bool FixFileSecurityOnAllFiles { get; set; }
+
         /// <summary>
         /// Fixes file times on all files, even skipped ones.
         /// [/TIMFIX]
         /// </summary>
         public bool FixFileTimesOnAllFiles { get; set; }
+
         /// <summary>
         /// Deletes destination files and directories that no longer exist in the source.
         /// [/PURGE]
         /// </summary>
         public bool Purge { get; set; }
+
         /// <summary>
         /// Mirrors a directory tree (equivalent to CopySubdirectoriesIncludingEmpty plus Purge).
         /// [/MIR]
         /// </summary>
         public bool Mirror { get; set; }
+
         /// <summary>
         /// Moves files, and deletes them from the source after they are copied.
         /// [/MOV]
         /// </summary>
         public bool MoveFiles { get; set; }
+
         /// <summary>
         /// Moves files and directories, and deletes them from the source after they are copied.
         /// [/MOVE]
         /// </summary>
         public bool MoveFilesAndDirectories { get; set; }
+
         /// <summary>
         /// This property should be set to a string consisting of all the attributes to add (eg. AH; RASHCNET).
         /// Adds the specified attributes to copied files.
         /// [/A+:attributes]
         /// </summary>
         public string AddAttributes { get; set; }
+
         /// <summary>
         /// This property should be set to a string consisting of all the attributes to remove (eg. AH; RASHCNET).
         /// Adds the specified attributes to copied files.
         /// [/A-:attributes]
         /// </summary>
         public string RemoveAttributes { get; set; }
+
         /// <summary>
         /// Creates a directory tree and zero-length files only.
         /// [/CREATE]
         /// </summary>
         public bool CreateDirectoryAndFileTree { get; set; }
+
         /// <summary>
         /// Creates destination files by using 8.3 character-length FAT file names only.
         /// [/FAT]
         /// </summary>
         public bool FatFiles { get; set; }
+
         /// <summary>
         /// Turns off support for very long paths (longer than 256 characters).
         /// [/256]
         /// </summary>
         public bool TurnLongPathSupportOff { get; set; }
+
         /// <summary>
         /// The default value of zero indicates that you do not wish to monitor for changes.
         /// Monitors the source, and runs again when more than N changes are detected.
         /// [/MON:N]
         /// </summary>
         public int MonitorSourceChangesLimit { get; set; }
+
         /// <summary>
         /// The default value of zero indicates that you do not wish to monitor for changes.
         /// Monitors source, and runs again in M minutes if changes are detected.
         /// [/MOT:M]
         /// </summary>
         public int MonitorSourceTimeLimit { get; set; }
+
         /// <summary>
         /// Specifies run times when new copies may be started.
         /// [/rh:hhmm-hhmm]
         /// </summary>
         public string RunHours { get; set; }
+
         /// <summary>
         /// Checks run times on a per-file (not per-pass) basis.
         /// [/PF]
         /// </summary>
         public bool CheckPerFile { get; set; }
+
         /// <summary>
         /// The default value of zero indicates that this feature is turned off.
         /// Specifies the inter-packet gap to free bandwidth on slow lines.
         /// [/IPG:N]
         /// </summary>
         public int InterPacketGap { get; set; }
+
         /// <summary>
         /// Copies the symbolic link instead of the target.
         /// [/SL]
         /// </summary>
         public bool CopySymbolicLink { get; set; }
+
         /// <summary>
         /// The default value of zero indicates that this feature is turned off.
         /// Creates multi-threaded copies with N threads. Must be an integer between 1 and 128.
@@ -251,21 +276,23 @@ namespace RoboSharp
         /// [/MT:N]
         /// </summary>
         public int MultiThreadedCopiesCount { get; set; }
+
         /// <summary>
         /// What to copy for directories (default is DA).
         /// (copyflags: D=Data, A=Attributes, T=Timestamps).
         /// [/DCOPY:copyflags]
         /// </summary>
-        public string DirectoryCopyFlags
-        {
+        public string DirectoryCopyFlags {
             get { return directoryCopyFlags; }
             set { directoryCopyFlags = value; }
         }
+
         /// <summary>
         /// Do not copy any directory info.
         /// [/NODCOPY]
         /// </summary>
         public bool DoNotCopyDirectoryInfo { get; set; }
+
         /// <summary>
         /// Copy files without using the Windows Copy Offload mechanism.
         /// [/NOOFFLOAD]
@@ -274,8 +301,7 @@ namespace RoboSharp
 
         #endregion Public Properties
 
-        internal string Parse()
-        {
+        internal string Parse() {
             Debugger.Instance.DebugMessage("Parsing CopyOptions...");
             var version = VersionManager.Version;
             var options = new StringBuilder();
@@ -287,21 +313,19 @@ namespace RoboSharp
             Debugger.Instance.DebugMessage(string.Format("Parsing CopyOptions progress ({0}).", options.ToString()));
 
             #region Set Options
+
             var cleanedCopyFlags = CopyFlags.CleanOptionInput();
             var cleanedDirectoryCopyFlags = DirectoryCopyFlags.CleanOptionInput();
 
-            if (!cleanedCopyFlags.IsNullOrWhiteSpace())
-            {
+            if (!cleanedCopyFlags.IsNullOrWhiteSpace()) {
                 options.Append(string.Format(COPY_FLAGS, cleanedCopyFlags));
                 Debugger.Instance.DebugMessage(string.Format("Parsing CopyOptions progress ({0}).", options.ToString()));
             }
-            if (!cleanedDirectoryCopyFlags.IsNullOrWhiteSpace() && version >= 5.1260026)
-            {
+            if (!cleanedDirectoryCopyFlags.IsNullOrWhiteSpace() && version >= 5.1260026) {
                 options.Append(string.Format(DIRECTORY_COPY_FLAGS, cleanedDirectoryCopyFlags));
                 Debugger.Instance.DebugMessage(string.Format("Parsing CopyOptions progress ({0}).", options.ToString()));
             }
-            if (CopySubdirectories)
-            {
+            if (CopySubdirectories) {
                 options.Append(COPY_SUBDIRECTORIES);
                 Debugger.Instance.DebugMessage(string.Format("Parsing CopyOptions progress ({0}).", options.ToString()));
             }
@@ -365,6 +389,7 @@ namespace RoboSharp
                 options.Append(DO_NOT_COPY_DIRECTORY_INFO);
             if (DoNotUseWindowsCopyOffload && version >= 6.2)
                 options.Append(DO_NOT_USE_WINDOWS_COPY_OFFLOAD);
+
             #endregion Set Options
 
             var parsedOptions = options.ToString();

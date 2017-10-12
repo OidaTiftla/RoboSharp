@@ -1,9 +1,9 @@
 ﻿using System.Text;
 
-namespace RoboSharp
-{
-    public class SelectionOptions
-    {
+namespace RoboSharp {
+
+    public class SelectionOptions {
+
         #region Option Constants
 
         private const string ONLY_COPY_ARCHIVE_FILES = "/A ";
@@ -40,124 +40,147 @@ namespace RoboSharp
         /// [/A]
         /// </summary>
         public bool OnlyCopyArchiveFiles { get; set; }
+
         /// <summary>
         /// Copies only files for which the Archive attribute is set, and resets the Archive attribute.
         /// [/M]
         /// </summary>
         public bool OnlyCopyArchiveFilesAndResetArchiveFlag { get; set; }
+
         /// <summary>
         /// This property should be set to a string consisting of all the attributes to include (eg. AH; RASHCNETO).
         /// Includes only files for which any of the specified attributes are set.
         /// [/IA:attributes]
         /// </summary>
         public string IncludeAttributes { get; set; }
+
         /// <summary>
         /// This property should be set to a string consisting of all the attributes to exclude (eg. AH; RASHCNETO).
         /// Excludes files for which any of the specified attributes are set.
         /// [/XA:attributes]
         /// </summary>
         public string ExcludeAttributes { get; set; }
+
         /// <summary>
         /// Files should be separated by spaces.
         /// Excludes files that match the specified names or paths. Note that FileName can include wildcard characters (* and ?).
         /// [/XF File File ...]
         /// </summary>
         public string ExcludeFiles { get; set; }
+
         /// <summary>
         /// Directories should be separated by spaces.
         /// Excludes directories that match the specified names or paths.
         /// [/XD Directory Directory ...]
         /// </summary>
         public string ExcludeDirectories { get; set; }
+
         /// <summary>
         /// Excludes changed files.
         /// [/XC]
         /// </summary>
         public bool ExcludeChanged { get; set; }
+
         /// <summary>
         /// Excludes newer files.
         /// [/XN]
         /// </summary>
         public bool ExcludeNewer { get; set; }
+
         /// <summary>
         /// Excludes older files.
         /// [/XO]
         /// </summary>
         public bool ExcludeOlder { get; set; }
+
         /// <summary>
         /// Excludes extra files and directories.
         /// [/XX]
         /// </summary>
         public bool ExcludeExtra { get; set; }
+
         /// <summary>
         /// Excludes lonely files and directories.
         /// [/XL]
         /// </summary>
         public bool ExcludeLonely { get; set; }
+
         /// <summary>
         /// Includes the same files.
         /// [/IS]
         /// </summary>
         public bool IncludeSame { get; set; }
+
         /// <summary>
         /// Includes tweaked files.
         /// [/IT]
         /// </summary>
         public bool IncludeTweaked { get; set; }
+
         /// <summary>
         /// Zero indicates that this feature is turned off.
         /// Specifies the maximum file size (to exclude files bigger than N bytes).
         /// [/MAX:N]
         /// </summary>
         public long MaxFileSize { get; set; }
+
         /// <summary>
         /// Zero indicates that this feature is turned off.
         /// Specifies the minimum file size (to exclude files smaller than N bytes).
         /// [/MIN:N]
         /// </summary>
         public long MinFileSize { get; set; }
+
         /// <summary>
         /// Specifies the maximum file age (to exclude files older than N days or date).
         /// [/MAXAGE:N OR YYYYMMDD]
         /// </summary>
         public string MaxFileAge { get; set; }
+
         /// <summary>
         /// Specifies the minimum file age (exclude files newer than N days or date).
         /// [/MINAGE:N OR YYYYMMDD]
         /// </summary>
         public string MinFileAge { get; set; }
+
         /// <summary>
         /// Specifies the maximum last access date (excludes files unused since Date).
         /// [/MAXLAD:YYYYMMDD]
         /// </summary>
         public string MaxLastAccessDate { get; set; }
+
         /// <summary>
-        /// Specifies the minimum last access date (excludes files used since N) If N is less 
-        /// than 1900, N specifies the number of days. Otherwise, N specifies a date 
+        /// Specifies the minimum last access date (excludes files used since N) If N is less
+        /// than 1900, N specifies the number of days. Otherwise, N specifies a date
         /// in the format YYYYMMDD.
         /// [/MAXLAD:N or YYYYMMDD]
         /// </summary>
         public string MinLastAccessDate { get; set; }
+
         /// <summary>
         /// Excludes junction points, which are normally included by default.
         /// [/XJ]
         /// </summary>
         public bool ExcludeJunctionPoints { get; set; }
+
         /// <summary>
         /// Assumes FAT file times (two-second precision).
         /// [/FFT]
         /// </summary>
         public bool UseFatFileTimes { get; set; }
+
         /// <summary>
         /// Compensates for one-hour DST time differences.
         /// [/DST]
         /// </summary>
         public bool CompensateForDstDifference { get; set; }
+
         /// <summary>
         /// Excludes junction points for directories.
         /// [/XJD]
         /// </summary>
         public bool ExcludeJunctionPointsForDirectories { get; set; }
+
         /// <summary>
         /// Excludes junction points for files.
         /// [/XJF]
@@ -166,8 +189,7 @@ namespace RoboSharp
 
         #endregion Public Properties
 
-        internal string Parse()
-        {
+        internal string Parse() {
             var options = new StringBuilder();
 
             #region Set Options

@@ -1,12 +1,10 @@
 ﻿using System;
 
-namespace RoboSharp
-{
-    public class RoboCommandCompletedEventArgs : EventArgs
-    {
-        public RoboCommandCompletedEventArgs()
-        {
+namespace RoboSharp {
 
+    public class RoboCommandCompletedEventArgs : EventArgs {
+
+        public RoboCommandCompletedEventArgs() {
         }
     }
 }

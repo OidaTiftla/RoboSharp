@@ -1,43 +1,31 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Management;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RoboSharp
-{
-    internal static class VersionManager
-    {
+namespace RoboSharp {
+
+    internal static class VersionManager {
         private static double? version;
-        internal static double Version
-        {
-            get
-            {
-                if (version == null)
-                {
+
+        internal static double Version {
+            get {
+                if (version == null) {
                     var v = GetOsVersion();
                     version = GetOsVersionNumber(v);
                     return version.Value;
-                }
-                else
-                {
+                } else {
                     return version.Value;
                 }
             }
         }
 
-        private static string GetOsVersion()
-        {
-            using (ManagementObjectSearcher objMOS = new ManagementObjectSearcher("SELECT * FROM  Win32_OperatingSystem"))
-            {
-                foreach (ManagementObject objManagement in objMOS.Get())
-                {
+        private static string GetOsVersion() {
+            using (ManagementObjectSearcher objMOS = new ManagementObjectSearcher("SELECT * FROM  Win32_OperatingSystem")) {
+                foreach (ManagementObject objManagement in objMOS.Get()) {
                     var version = objManagement.GetPropertyValue("Version");
 
-                    if (version != null)
-                    {
+                    if (version != null) {
                         return version.ToString();
                     }
                 }
@@ -46,8 +34,7 @@ namespace RoboSharp
             return Environment.OSVersion.Version.ToString();
         }
 
-        private static double GetOsVersionNumber(string version)
-        {
+        private static double GetOsVersionNumber(string version) {
             if (version.IsNullOrWhiteSpace())
                 return 0;
 

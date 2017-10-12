@@ -1,13 +1,11 @@
 ﻿using System;
 
-namespace RoboSharp
-{
-    public class ErrorEventArgs : EventArgs
-    {
+namespace RoboSharp {
+
+    public class ErrorEventArgs : EventArgs {
         public string Error { get; set; }
 
-        public ErrorEventArgs(string error)
-        {
+        public ErrorEventArgs(string error) {
             Error = error;
         }
     }

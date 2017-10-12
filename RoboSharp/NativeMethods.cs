@@ -2,13 +2,12 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
-namespace RoboSharp
-{
-    public static class NativeMethods
-    {
+namespace RoboSharp {
+
+    public static class NativeMethods {
+
         [Flags]
-        public enum ThreadAccess : int
-        {
+        public enum ThreadAccess : int {
             TERMINATE = (0x0001),
             SUSPEND_RESUME = (0x0002),
             GET_CONTEXT = (0x0008),
@@ -21,31 +20,28 @@ namespace RoboSharp
         }
 
         [DllImport("kernel32.dll")]
-        static extern IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
-        [DllImport("kernel32.dll")]
-        static extern uint SuspendThread(IntPtr hThread);
-        [DllImport("kernel32.dll")]
-        static extern int ResumeThread(IntPtr hThread);
+        private static extern IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
 
-        public static void Suspend(this Process process)
-        {
-            foreach (ProcessThread thread in process.Threads)
-            {
+        [DllImport("kernel32.dll")]
+        private static extern uint SuspendThread(IntPtr hThread);
+
+        [DllImport("kernel32.dll")]
+        private static extern int ResumeThread(IntPtr hThread);
+
+        public static void Suspend(this Process process) {
+            foreach (ProcessThread thread in process.Threads) {
                 var pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)thread.Id);
-                if (pOpenThread == IntPtr.Zero)
-                {
+                if (pOpenThread == IntPtr.Zero) {
                     break;
                 }
                 SuspendThread(pOpenThread);
             }
         }
-        public static void Resume(this Process process)
-        {
-            foreach (ProcessThread thread in process.Threads)
-            {
+
+        public static void Resume(this Process process) {
+            foreach (ProcessThread thread in process.Threads) {
                 var pOpenThread = OpenThread(ThreadAccess.SUSPEND_RESUME, false, (uint)thread.Id);
-                if (pOpenThread == IntPtr.Zero)
-                {
+                if (pOpenThread == IntPtr.Zero) {
                     break;
                 }
                 ResumeThread(pOpenThread);
