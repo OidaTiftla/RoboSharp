@@ -226,11 +226,21 @@ namespace RoboSharp {
                 process.StartInfo.Arguments = GenerateParameters();
                 process.OutputDataReceived += process_OutputDataReceived;
                 process.ErrorDataReceived += process_ErrorDataReceived;
+                var started = false;
+                try {
+                    started = process.Start();
+                } catch {
+                    process = null;
+                    throw;
+                }
                 Debugger.Instance.DebugMessage("RoboCopy process started.");
-                process.Start();
-                process.BeginOutputReadLine();
-                process.BeginErrorReadLine();
-                process.WaitForExit();
+                if (started) {
+                    process.BeginOutputReadLine();
+                    process.BeginErrorReadLine();
+                    process.WaitForExit();
+                } else {
+                    process = null;
+                }
                 Debugger.Instance.DebugMessage("RoboCopy process exited.");
             });
 
